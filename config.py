@@ -1,7 +1,8 @@
 import random
+from datetime import datetime
 
-START_DATE = "2020/7/7"
-END_DATE = "2020/7/8"
+START_DATE = datetime(2020, 1, 1)
+END_DATE = datetime(2020, 1, 3)
 
 MOBILE_DEVICE_COUNT = 300
 SKIMMER_DISTANCE_RANGE = 3  # units in metres, from Access Point
