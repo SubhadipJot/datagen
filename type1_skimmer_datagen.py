@@ -11,19 +11,7 @@ import csv
 
 
 def generate():
-    index_to_pop = set()
-    # print('type1 skimmer generation in process')
-    # start_date = config.START_DATE.strftime("%Y-%m-%d")
-    # end_date = config.END_DATE.strftime("%Y-%m-%d")
-    # date_list = pd.date_range(start=start_date,
-    #                           end=end_date, freq='S').tolist()
-    # for i in range(int(len(date_list)/0.8)):
-    #     index_to_pop.add(random.randrange(len(date_list)))
-    # timestamps_to_remove = [date_list[index] for index in index_to_pop]
-    # final_date_list = [
-    #     timestamp for timestamp in date_list if timestamp not in timestamps_to_remove]
     devices = []
-
     start_date = config.START_DATE
     end_date = config.END_DATE
     times = []
