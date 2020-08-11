@@ -21,8 +21,24 @@ def distance(x1, y1, x2, y2):
     return round(math.sqrt(math.pow(x2 - x1, 2) + math.pow(y2 - y1, 2) * 1.0))
 
 
+def mobile_device_distance(x1, y1, x2, y2):
+    distance_list = []
+    for i in range(len(x2)):
+        distance_list.append(
+            round(math.sqrt(math.pow(x2[i] - x1, 2) + math.pow(y2[i] - y1, 2) * 1.0)))
+    return distance_list
+
+
 def confidenceFactor(distance):
     return list(map(lambda x: round((100 - ((x / 235) * 100))), distance))
+
+
+def mobile_device_epoch(time_span):
+    epoch_list = []
+    for t in time_span:
+        dt = datetime.strptime(t, "%Y-%m-%d %H:%M:%S")
+        epoch_list.append(int(dt.timestamp() * 1000))
+    return epoch_list
 
 
 def datetime_range(start, end, delta):
