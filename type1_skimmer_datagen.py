@@ -26,7 +26,7 @@ def generate():
         time_span = [i for i in times]
         xPos = float(0 + random.uniform(10.0, 25.5))
         yPos = float(0 + random.uniform(10.0, 35.5))
-        device_details['deviceType'] = 'skimmer'
+        device_details['deviceType'] = '1'
         # device_details['sessionDurationInHours'] = session_duration
         # device_details['sessionDurationInSeconds'] = session_duration * 60 * 60
         device_details['timeSpanAlive'] = [str(i) for i in time_span]

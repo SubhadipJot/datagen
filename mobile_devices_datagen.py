@@ -29,7 +29,7 @@ def generate():
             RandMac("00:00:00:00:00:00", True)).strip("'")
         device_details['deviceId'] = 'device-' + \
             helper.get_random_alphaNumeric_string()
-        device_details['deviceType'] = 'mobile'
+        device_details['deviceType'] = '0'
         device_details['repeatCount'] = random.choice([1, 2, 3, 4, 5, 6])
         for _ in range(device_details['repeatCount']):
             start_time = random.choice(times)

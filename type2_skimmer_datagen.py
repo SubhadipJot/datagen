@@ -21,7 +21,7 @@ def generate():
             int((i + 1) * 2)) if (i < 2) else helper.getTimeList(1))]
         xPos = float(0 + random.uniform(10.0, 25.5))
         yPos = float(0 + random.uniform(10.0, 35.5))
-        device_details['deviceType'] = 'skimmer'
+        device_details['deviceType'] = '2'
         device_details['timeSpanAlive'] = [str(i) for i in time_span]
         device_details['recordUid'] = [
             'event-' + str(helper.get_random_event_id()) for x in time_span]

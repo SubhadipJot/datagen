@@ -10,23 +10,32 @@ import math
 import csv
 
 
+def daterange(start_date, end_date, delta):
+    delta = timedelta(hours=delta)
+    while start_date < end_date:
+        yield start_date
+        start_date += delta
+    return delta
+
+
+def getTimeList(delta):
+    datetimelist = []
+    for i in daterange(config.START_DATE, config.END_DATE, delta):
+        datetimelist = datetimelist + (pd.date_range(
+            start=i, periods=int(random.uniform(10, 90)), freq='S').tolist())
+    return datetimelist
+
+
 def generate():
     devices = []
-    start_date = config.START_DATE
-    end_date = config.END_DATE
-    times = []
-    while start_date < end_date:
-        delta = timedelta(seconds=int(random.uniform(2, 5)))
-        times.append(start_date)
-        start_date += delta
-    times.append(end_date)
-
-    for _ in range(1):
+    for _ in range(3):
+        delta = random.uniform(2, 10)
+        times = getTimeList(delta)
         device_details = {}
         time_span = [i for i in times]
         xPos = float(0 + random.uniform(10.0, 25.5))
         yPos = float(0 + random.uniform(10.0, 35.5))
-        device_details['deviceType'] = 'skimmer'
+        device_details['deviceType'] = '3'
         device_details['timeSpanAlive'] = [str(i) for i in time_span]
         device_details['recordUid'] = [
             'event-' + str(helper.get_random_event_id()) for x in time_span]
