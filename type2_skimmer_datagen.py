@@ -42,7 +42,7 @@ def generate():
         device_details['pairingMacAddressSessionDuration'] = 'N/A'
         devices.append(device_details)
 
-    with open(f'./latest_data/{datetime.now()}-type2' + '.csv', 'w', newline='') as csvfile:
+    with open(f'./latest_data/latest-type2' + '.csv', 'w', newline='') as csvfile:
         writer = csv.writer(csvfile)
         writer.writerow(["recordUid", "recordTimeStamp", "verboseTime",
                          "macAddress", "deviceId", "deviceType", "doesPair", "pairingMacAddress", "pairingMacAddressSessionDuration", "xPos", "yPos", "distance", "confidenceFactor"])
