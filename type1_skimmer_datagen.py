@@ -69,7 +69,7 @@ def generate():
                                  device['yPos'][index],
                                  device['distance'][index],
                                  device['confidenceFactor'][index]])
-    print('typ1 skimmer generation successful')
+    print('type1 skimmer generation successful')
 
 
 def run():
