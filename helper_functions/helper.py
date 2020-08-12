@@ -1,5 +1,7 @@
 from datetime import date, datetime, timedelta
 import pandas as pd
+import os
+import glob
 import config
 import string
 import random
@@ -67,3 +69,14 @@ def getTimeList(period):
     final_time_list = [
         timestamp for timestamp in new_date_list if timestamp not in timestamps_to_remove]
     return final_time_list
+
+
+def generate_final_csv():
+    os.chdir("./latest_data")
+    extension = 'csv'
+    all_filenames = [i for i in glob.glob('*.{}'.format(extension))]
+    combined_csv = pd.concat([pd.read_csv(f) for f in all_filenames])
+    combined_csv.to_csv("final_data.csv", index=False, encoding='utf-8-sig')
+    # df = pd.read_csv("combined_csv.csv", low_memory=False)
+    # df.sort_values(by='verboseTime')
+    # df.to_csv("final_data_2.csv", index=False, encoding='utf-8-sig')
