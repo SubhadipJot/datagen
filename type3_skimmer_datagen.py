@@ -9,6 +9,8 @@ import string
 import math
 import csv
 
+devices = []
+
 
 def daterange(start_date, end_date, delta):
     delta = timedelta(hours=delta)
@@ -26,8 +28,36 @@ def getTimeList(delta):
     return datetimelist
 
 
+def generate_pairing_mobile_device(mobile_macaddress, ap_macadress, times):
+    delta = random.uniform(2, 10)
+    times = times
+    device_details = {}
+    time_span = [i for i in times]
+    xPos = float(0 + random.uniform(11.5, 25.5))
+    yPos = float(0 + random.uniform(11.5, 35.5))
+    device_details['deviceType'] = '0'
+    device_details['timeSpanAlive'] = [str(i) for i in time_span]
+    device_details['recordUid'] = [
+        'event-' + str(helper.get_random_event_id()) for x in time_span]
+    device_details['recordTimeStamp'] = [
+        (x.timestamp()*1000) for x in time_span]
+    device_details['macAddress'] = mobile_macaddress
+    device_details['deviceId'] = 'device-' + \
+        helper.get_random_alphaNumeric_string()
+    device_details['xPos'] = [xPos for _ in time_span]
+    device_details['yPos'] = [yPos for _ in time_span]
+    device_details['distance'] = [
+        helper.distance(0, 0, xPos, yPos) for _ in time_span]
+    device_details['confidenceFactor'] = helper.confidenceFactor(
+        device_details['distance'])
+    # device_details['sessions'] = session_count
+    device_details['doesPair'] = True
+    device_details['pairingMacAddress'] = ap_macadress
+    device_details['pairingMacAddressSessionDuration'] = 'N/A'
+    devices.append(device_details)
+
+
 def generate():
-    devices = []
     for _ in range(3):
         delta = random.uniform(2, 10)
         times = getTimeList(delta)
@@ -57,6 +87,8 @@ def generate():
             RandMac("00:00:00:00:00:00", True)).strip("'")
         device_details['pairingMacAddressSessionDuration'] = 'N/A'
         devices.append(device_details)
+        generate_pairing_mobile_device(
+            device_details['pairingMacAddress'], device_details['macAddress'], times)
 
     with open(f'./latest_data/latest-type3' + '.csv', 'w', newline='') as csvfile:
         writer = csv.writer(csvfile)
