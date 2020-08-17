@@ -31,10 +31,12 @@ def generate():
             RandMac("00:00:00:00:00:00", True)).strip("'")
         device_details['deviceId'] = 'device-' + \
             helper.get_random_alphaNumeric_string()
-        device_details['xPos'] = [xPos for _ in time_span]
-        device_details['yPos'] = [yPos for _ in time_span]
-        device_details['distance'] = [
-            helper.distance(0, 0, xPos, yPos) for _ in time_span]
+        device_details['xPos'] = [
+            (xPos)+random.uniform(0.0, 2.0) for _ in time_span]
+        device_details['yPos'] = [
+            (yPos)+random.uniform(0.0, 2.0) for _ in time_span]
+        device_details['distance'] = helper.mobile_device_distance(
+            0, 0, device_details['xPos'], device_details['yPos'])
         device_details['confidenceFactor'] = helper.confidenceFactor(
             device_details['distance'])
         device_details['doesPair'] = 'False'
